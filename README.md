@@ -115,3 +115,20 @@ Precise adherence to units is critical, particularly regarding the rotor variabl
 * **Rotor Position:** The position is required within a range of $0$ to $2\pi$ for the control logic, but the raw integration value reflects the total cumulative rotation in radians.
 
 ---
+
+# References
+
+* **Baba, M. A., Naoui, M., & Cherkaoui, M. (2023).** *Digital Technologies and Applications: Modeling and Simulation of a BLDC Motor Speed Control in Electric Vehicles*. Springer Nature Switzerland AG, Vol. 1.
+* **Kasdin, N. J., & Paley, D. A. (2011).** *Engineering Dynamics: A Comprehensive Introduction*. Princeton University Press. ISBN 978-0-691-13537-3.
+* **Momenzadeh, M. M., Ahmed, A. F., & Tolba, A. (2013).** *Modelling and Simulation of the BLDC Electric Drive System Using SIMULINK/MATLAB for a Hybrid Vehicle*. Universität Paderborn.
+* **Siciliano, B., Sciavicco, L., Villani, L., & Oriolo, G. (2009).** *Robotics: Modelling, Planning and Control*. Springer-Verlag London Limited. DOI: 10.1007/978-1-84628-642-1.
+* **The MathWorks, Inc. (n.d.).** *Design Trajectory with Velocity Limits Using Trapezoidal Velocity Profile*. [Link](https://de.mathworks.com/help/robotics/ug/design-a-trajectory-with-velocity-limits-using-a-trapezoidal-velocity-profile.html)
+* **The MathWorks, Inc. (n.d.).** *Robotics System Toolbox: Entwicklung, Simulation, Test und Bereitstellung von Robotik-Anwendungen*. [Link](https://de.mathworks.com/products/robotics.html)
+* **The MathWorks, Inc. (n.d.).** *Symbolic Math Toolbox: Ausführung symbolischer mathematischer Berechnungen*. [Link](https://de.mathworks.com/products/symbolic.html)
+* **The MathWorks, Inc. (n.d.).** *Teaching Rigid Body Dynamics: Two-Degrees-of-Freedom Non-Planar Robotic Manipulator Case Study (Part 3)*. [Link](https://de.mathworks.com/videos/teaching-rigid-body-dynamics-part-3-two-degrees-of-freedomnon-planar-robotic-manipulator-case-study-1509356325784.html)
+* **The MathWorks, Inc. (n.d.).** *timeseries: Create timeseries object*. [Link](https://de.mathworks.com/help/matlab/ref/timeseries.html)
+* **Wikimedia Foundation Inc. (2022).** *Rotationsenergie*. [Link](https://de.wikipedia.org/wiki/Rotationsenergie)
+* **Wikimedia Foundation Inc. (2023).** *Kinetische Energie*. [Link](https://de.wikipedia.org/wiki/Kinetische_Energie)
+* **Wikimedia Foundation Inc. (2023).** *Liste von Trägheitstensoren*. [Link](https://de.wikipedia.org/wiki/Liste_von_Tr%C3%A4gheitstensoren)
+* **Wikimedia Foundation Inc. (2023).** *Potentielle Energie*. [Link](https://de.wikipedia.org/wiki/Potentielle_Energie)
+* **Yamashita, R. Y., Silva, F. L., Santiciolli, F. M., Eckert, J. J., & Dedini, F. G. (2018).** *Comparison between two models of BLDC motor, simulation and data acquisition*. Journal of the Brazilian Society of Mechanical Sciences and Engineering, Vol. 40.
