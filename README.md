@@ -1,4 +1,13 @@
-## Requieres: MATLAB R2023b, Simscape, Simscape Multibody, Simscape Electrical Simulink, Robotic System Toolbox, Symbolic Math Toolbox.
+## Requieres
+
+To run the MATLAB files, the following extensions must be installed:
+* **MATLAB R2023b**
+* **Simscape**
+* **Simscape Multibody**
+* **Simscape Electrical**
+* **Simulink**
+* **Robotic System Toolbox**
+* **Symbolic Math Toolbox**
 
 ---
 
