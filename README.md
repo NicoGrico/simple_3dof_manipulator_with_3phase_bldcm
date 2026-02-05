@@ -1,3 +1,70 @@
+## Requieres: MATLAB R2023b, Simscape, Simscape Multibody, Simscape Electrical Simulink, Robotic System Toolbox, Symbolic Math Toolbox.
+
+---
+
+# Modeling of a three link manipulator
+
+## Inverse Dynamics
+Using **inverse dynamics** to determined the torques which are required to manipulate the multi-body system so that the desired joint angles are achieved. Within the scope of this project, these torques are applied as a **load torque** ($\tau_l$) to the actuators. For this calculation, the **Lagrange formulation** is utilized. The advantage of this formulation lies in the fact that the equations of motion can be calculated using a systematic computational procedure (Siciliano et al., 2009, p. 248).
+
+The Lagrangian ($\mathcal{L}$) is derived from the difference between the **kinetic energy** ($T$) and the **potential energy** ($U$):
+
+$$\mathcal{L} = T - U$$
+
+The equations of motion are then derived using the Euler-Lagrange equation If non-conservative forces $\epsilon_i$ (such as frictional forces) are present between the joints, the equation is defined as follows:
+
+$$\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right) - \frac{\partial \mathcal{L}}{\partial q_i} = \epsilon_i$$
+
+Where:
+* $q_i$: Joint positions
+* $\dot{q}_i$: Joint velocities
+* $\epsilon_i$: Generalized forces/torques
+
+## Kinetic Energy $T$
+The kinetic energy of a rigid body is the sum of the translational energy $T_{trans}$ and the rotational energy $T_{rot}$. The translational energy of a mass point is proportional to its mass $m$ and the square of its linear velocity $\vec{v}$ (Wikipedia, 2023):
+
+$$T_{trans} = \frac{1}{2} m \vec{v}^T \vec{v}$$
+
+$$T_{v} = \frac{1}{2} m (\dot{x}^2 + \dot{y}^2 + \dot{z}^2)$$
+
+This means that the Cartesian coordinates for each individual mass position must first be defined, differentiated, and squared to determine the linear velocity.
+
+The rotational energy is derived from the inertia tensor $I$ and the angular velocity $\vec{\omega}$ squared (Wikipedia, 2022):
+
+$$T_{rot} = \frac{1}{2} \vec{\omega}^T I_{inertia} \vec{\omega}$$
+
+The **inertia tensor** is a $3 \times 3$ symmetric matrix containing the mass moments of inertia on its diagonal and the products of inertia on its off-diagonal elements (Kasadin & Paley, 2011, p. 481). For the manipulator discussed here, complex shapes are avoided, and a **solid cylinder** is assumed for all three bodies. The corresponding inertia tensor matrix can be obtained from standard tables.
+
+It is crucial to note that the elements of the inertia matrix are defined in the **local frame** of the respective body. Therefore, to ensure that the inertia matrix remains independent of the manipulator configuration, the angular velocity must be referenced to the body's local frame.
+
+If the joints have been defined using the **Denavit-Hartenberg (D-H) convention**, the angular velocity can be transformed using the transposed rotation matrix $R_i$ from Link $i$ to Link $i-1$ (Siciliano et al., 2009, p. 251):
+
+$$\omega_{i-1} = R_i^T \omega_i$$
+
+The total kinetic energy is then calculated as the sum of translational and rotational components:
+
+$$T = T_{trans} + T_{rot}$$
+
+## Potential Energy $U$
+The final component required for the Lagrange formulation is the potential energy. If spring energy is neglected, the potential energy corresponds to the gravitational potential energy (Wikipedia, 2023):
+
+$$U = mgh$$
+
+The heights $h$ are derived from the position vectors of the masses, specifically from the $z$-components (in the world coordinate system).
+
+## Generalized Forces
+The generalized force $\epsilon$ is derived from the contributions of the actuation torque $\tau$ at the joint and the viscous friction torques (Siciliano et al., 2009, p. 249):
+
+$$\epsilon = \tau - b \dot{\theta}$$
+
+By performing a free-body analysis (cutting) of the links, torque matrices can be established for all joints. In this project, for the sake of simplicity, it is assumed that for one-dimensional joints, forces act exclusively on the joint axis.
+
+---
+
+![Alternativer Text](images/overview_mechanical_model.png)
+
+---
+
 # Modeling of a Three-Phase BLDC Motor
 
 ## 1. Requirements for Robotic Actuators
