@@ -9,6 +9,9 @@ To run the MATLAB files, the following extensions must be installed:
 * **Robotic System Toolbox**
 * **Symbolic Math Toolbox**
 
+> [!IMPORTANT]
+> Before opening the `simple_3dof_manipulator_with_bldcm.srx` file, you **must** execute the `simple_3dof_manipulator_calculations.mlx` file. This ensures the robot tree is loaded and the trajectory is stored in the workspace.
+
 ---
 
 # Modeling of a three link manipulator
