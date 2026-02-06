@@ -70,8 +70,9 @@ By performing a free-body analysis (cutting) of the links, torque matrices can b
 
 ---
 
-![Alternativer Text](images/overview_mechanical_model.png)
+![image](images/overview_mechanical_model.png)
 
+![image](images/3dof_arm.png)
 ---
 
 # Modeling of a Three-Phase BLDC Motor
