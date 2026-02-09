@@ -103,6 +103,100 @@ The magnetic attraction between the north and south poles generates torque and r
 To switch the stator windings at the correct time, it is essential to determine the position of the rotor. This requires at least **three Hall-effect sensors**, which are each offset by 120° (Yamashita et al. 2017, p. 3).
 The Hall-effect sensors are simulated within a **Simulink Function block** using an `if` group. For this, the electrical rotor position $\theta_e$ is utilized. Depending on the Hall status and the direction of rotation, the MOSFET control signals are implemented in a subsequent `if` group.
 
+## Mathematical Equations
+
+> [!NOTE]
+> It should be noted that the researched literature does not provide uniform mathematical calculation rules. Although the underlying equations are often similar, the specific formulations and approaches vary in detail from source to source.
+
+The following equations are based on Baba et al. 2023, p. 885ff; Nalli et al. 2019, p. 1550f:
+
+## Three-Phase BLDCM Voltage Equations
+
+$$V_i = R I_i + L \frac{di_i}{dt} + e_i, \quad i \in \{a, b, c\}$$
+
+### Voltage Equations for a BLDCM
+
+$$V_i = R I_i + L \frac{di_i}{dt} + e_i$$
+
+$$
+\begin{bmatrix}
+V_a \\
+V_b \\
+V_c
+\end{bmatrix} = 
+\begin{bmatrix}
+R & 0 & 0 \\
+0 & R & 0 \\
+0 & 0 & R
+\end{bmatrix}
+\begin{bmatrix}
+i_a \\
+i_b \\
+i_c
+\end{bmatrix} + 
+\begin{bmatrix}
+L & 0 & 0 \\
+0 & L & 0 \\
+0 & 0 & L
+\end{bmatrix}
+\frac{d}{dt}
+\begin{bmatrix}
+i_a \\
+i_b \\
+i_c
+\end{bmatrix} + 
+\begin{bmatrix}
+e_a \\
+e_b \\
+e_c
+\end{bmatrix}
+$$
+
+### Line-to-Line Voltage Equations
+
+The differential equations for the line-to-line voltages $V_{ac}$ and $V_{cb}$ are defined by the resistance $R$, inductance $L$, and the back-electromotive force (BEMF) $e$:
+
+$$V_{ac} = R(i_a - i_c) + L \left( \frac{di_a}{dt} - \frac{di_c}{dt} \right) + e_a - e_c$$
+
+$$V_{cb} = R(i_c - i_b) + L \left( \frac{di_c}{dt} - \frac{di_b}{dt} \right) + e_c - e_b$$
+
+### Current Continuity Constraint
+
+Assuming a balanced system or an isolated neutral point, the sum of the currents (and their derivatives) must equal zero:
+
+$$\frac{di_c}{dt} = -\left( \frac{di_a}{dt} + \frac{di_b}{dt} \right)$$
+
+### Current State Derivatives
+
+By substituting the continuity constraint into the line-to-line equations, we derive the explicit expressions for the rate of change of the phase currents:
+
+Derivative of Phase Current $i_a$
+$$\frac{di_a}{dt} = \frac{2}{3L} V_{ac} + \frac{1}{3L} V_{cb} - \frac{R}{L} i_a - \frac{2}{3L} e_{ac} - \frac{1}{3L} e_{cb}$$
+
+Derivative of Phase Current $i_b$
+$$\frac{di_b}{dt} = \frac{1}{3L} V_{ac} + \frac{2}{3L} V_{cb} - \frac{R}{L} i_b - \frac{1}{3L} e_{ac} - \frac{2}{3L} e_{cb}$$
+
+### Back-EMF Equations
+The back-EMF ($e$) for each phase is a function of the motor speed ($\omega_m$), the back-EMF constant ($k_e$), and the rotor position-dependent shape function $f(\theta)$:
+
+$$e_a = k_e \omega_m f_a(\theta)$$
+$$e_b = k_e \omega_m f_b(\theta)$$
+$$e_c = k_e \omega_m f_c(\theta)$$
+
+### Electromagnetic Torque
+The total electromagnetic torque ($\tau_e$) is derived from the power balance of the three phases. It can be expressed through the instantaneous power or simplified using the torque constant ($k_t$):
+
+### Instantaneous Power Method
+$$\tau_e = \frac{e_a i_a + e_b i_b + e_c i_c}{\omega_m}$$
+
+### Simplified Torque Relation
+$$\tau_e = k_t i_a$$
+
+### Mechanical Dynamics (Equations of Motion)
+The acceleration of the rotor is determined by the balance of the electromagnetic torque, friction, and the external load torque:
+
+$$\frac{d\omega_m}{dt} = \frac{\tau_e - f \cdot \omega_m - \tau_l}{J}$$
+
 ---
 
 ![Alternativer Text](images/overview_three_phase_inverter.png)
