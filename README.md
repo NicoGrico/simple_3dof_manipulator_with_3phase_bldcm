@@ -171,9 +171,11 @@ $$\frac{di_c}{dt} = -\left( \frac{di_a}{dt} + \frac{di_b}{dt} \right)$$
 By substituting the continuity constraint into the line-to-line equations, we derive the explicit expressions for the rate of change of the phase currents:
 
 Derivative of Phase Current $i_a$
+
 $$\frac{di_a}{dt} = \frac{2}{3L} V_{ac} + \frac{1}{3L} V_{cb} - \frac{R}{L} i_a - \frac{2}{3L} e_{ac} - \frac{1}{3L} e_{cb}$$
 
 Derivative of Phase Current $i_b$
+
 $$\frac{di_b}{dt} = \frac{1}{3L} V_{ac} + \frac{2}{3L} V_{cb} - \frac{R}{L} i_b - \frac{1}{3L} e_{ac} - \frac{2}{3L} e_{cb}$$
 
 ### Back-EMF Equations
